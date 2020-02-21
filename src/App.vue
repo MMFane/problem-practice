@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ProblemPractice msg="Hello"/>
+    <ProblemPractice msg="Greetings"/>
   </div>
 </template>
 

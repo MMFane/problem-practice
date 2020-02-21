@@ -1,14 +1,20 @@
 <template>
   <div id="problem-practice">
     <label>Name</label>
-    <input placeholder="Enter your name" v-model="name"/>
-    <p class="message">{{ msg }}<span v-show="name">, {{ name }}!</span></p>
+    <input placeholder="Is your name Alice or Bob?" v-model="name"/>
+    <p class="message">{{ msg }}<span v-show="exclusiveNames">, {{ name }}!</span></p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ProblemPractice',
+  computed: {
+    exclusiveNames() {
+      let normalizedName = this.name.toLowerCase();
+      return normalizedName === 'alice' || normalizedName === 'bob'
+    }
+  },
   data() {
     return {
       name: '',

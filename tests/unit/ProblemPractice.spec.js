@@ -10,12 +10,15 @@ describe('ProblemPractice.vue', () => {
     expect(wrapper.text()).toMatch(msg)
   })
 
-  it('renders props.msg, name! when name is passed', () => {
+  it('renders props.msg, name! when name is passed && === Alice or Bob', () => {
     const msg = 'Hello'
     const wrapper = shallowMount(ProblemPractice, {
       propsData: { msg, name }
     })
-    let compiledMessage = `${msg}, ${name}!`
+    let compiledMessage = msg;
+    if (name.toLowerCase() === 'alice' || name.toLowerCase() === 'bob') {
+      compiledMessage += `, ${name}!`
+    }
     expect(wrapper.text()).toMatch(compiledMessage)
   })
 })
