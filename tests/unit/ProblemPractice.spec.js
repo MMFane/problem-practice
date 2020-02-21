@@ -9,4 +9,13 @@ describe('ProblemPractice.vue', () => {
     })
     expect(wrapper.text()).toMatch(msg)
   })
+
+  it('renders props.msg, name! when name is passed', () => {
+    const msg = 'Hello'
+    const wrapper = shallowMount(ProblemPractice, {
+      propsData: { msg, name }
+    })
+    let compiledMessage = `${msg}, ${name}!`
+    expect(wrapper.text()).toMatch(compiledMessage)
+  })
 })
