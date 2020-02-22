@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ProblemPractice msg="Greetings"/>
+    <ProblemPractice msg="The sum of all integers from 1 to n is "/>
   </div>
 </template>
 
