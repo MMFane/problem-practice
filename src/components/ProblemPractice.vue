@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     handleInput(event) {
-      this.$emit('handleNumInput', parseInt(event.target.value, 10));
+      this.$emit('handleNumInput', event.target.value);
     }
   },
   props: {

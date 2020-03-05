@@ -23,11 +23,7 @@ export default {
   },
   methods: {
     updateNumber(value) {
-      if (value)
-        this.number = value;
-      else
-        this.number = 0;
-        
+        this.number = value === '' ? 0 : parseInt(value, 10);   
     }
   }
 }
