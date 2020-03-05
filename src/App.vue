@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <ProblemPractice msg="The sum of all integers from 1 to n is "/>
+    <ProblemPractice 
+      :msg="`If we only count multiples of 3 and 5, the sum of all those integers from 1 to ${number} is `" 
+      :number="number"
+      @handleNumInput="updateNumber"
+    />
   </div>
 </template>
 
@@ -11,6 +15,20 @@ export default {
   name: 'App',
   components: {
     ProblemPractice
+  },
+  data() {
+    return {
+      number: 0,
+    }
+  },
+  methods: {
+    updateNumber(value) {
+      if (value)
+        this.number = value;
+      else
+        this.number = 0;
+        
+    }
   }
 }
 </script>

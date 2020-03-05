@@ -1,8 +1,23 @@
 <template>
   <div id="problem-practice">
     <label>Number</label>
-    <input placeholder="Enter any number" type="number" v-model.number="number"/>
-    <p class="message">{{ msg }} {{ sum }}, aka {{ sumAlt }}, yo!</p>
+    <input 
+      placeholder="Enter any number" 
+      type="number" 
+      value="number" 
+      @input="handleInput"
+    />
+    <p class="message">{{ msg }} {{ sum }}</p>
+    <div v-if="number > 2">
+      <p>How'd we get there?</p>
+      <p>
+        <span v-for="(num, index) in addList" :key="`add-${index}`">
+          {{ num }}
+          <span v-if="index < addList.length - 1"> + </span>
+        </span>
+        <span>= {{ sum }}</span>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -10,9 +25,18 @@
 export default {
   name: 'ProblemPractice',
   computed: {
+    addList() {
+      const tempArray = [];
+      for (let i = 1; i <= this.number; i++) {    
+        if (i % 3 === 0 || i % 5 === 0)
+          tempArray.push(i);
+      }
+      return tempArray;
+    },
     sum() {
       let sum = 0;
       for (let i = 1; i <= this.number; i++) {
+        if (i % 3 === 0 || i % 5 === 0)
           sum += i;
       }
       return sum;
@@ -21,13 +45,14 @@ export default {
       return (this.number * (this.number + 1))/2;
     }
   },
-  data() {
-    return {
-      number: 1
+  methods: {
+    handleInput(event) {
+      this.$emit('handleNumInput', parseInt(event.target.value, 10));
     }
   },
   props: {
-    msg: String
+    msg: String,
+    number: Number,
   }
 }
 </script>
