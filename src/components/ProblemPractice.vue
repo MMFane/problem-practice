@@ -1,8 +1,8 @@
 <template>
   <div id="problem-practice">
-    <label>Name</label>
-    <input placeholder="Is your name Alice or Bob?" v-model="name"/>
-    <p class="message">{{ msg }}<span v-show="exclusiveNames">, {{ name }}!</span></p>
+    <label>Number</label>
+    <input placeholder="Enter any number" type="number" v-model.number="number"/>
+    <p class="message">{{ msg }} {{ sum }}, aka {{ sumAlt }}, yo!</p>
   </div>
 </template>
 
@@ -10,14 +10,20 @@
 export default {
   name: 'ProblemPractice',
   computed: {
-    exclusiveNames() {
-      let normalizedName = this.name.toLowerCase();
-      return normalizedName === 'alice' || normalizedName === 'bob'
+    sum() {
+      let sum = 0;
+      for (let i = 1; i <= this.number; i++) {
+          sum += i;
+      }
+      return sum;
+    },
+    sumAlt() {
+      return (this.number * (this.number + 1))/2;
     }
   },
   data() {
     return {
-      name: '',
+      number: 1
     }
   },
   props: {
@@ -26,7 +32,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 h3 {
